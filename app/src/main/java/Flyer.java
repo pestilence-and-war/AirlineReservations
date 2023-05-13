@@ -1,4 +1,5 @@
 import java.util.Date;
+import org.bson.Document;
 
 public class Flyer extends User {
     private Reservation reservation;
@@ -31,4 +32,34 @@ public class Flyer extends User {
     public void setAgentId(String agentId) {
         this.agentId = agentId;
     }
+
+    public String getNotificationPreference() {
+        return notificationPreference;
+    }
+
+    public void setNotificationPreference(String notificationPreference) {
+        this.notificationPreference = notificationPreference;
+    }
+
+    public Document toDocument() {
+        Document document = new Document()
+                .append("userId", getUserId())
+                .append("firstName", getFirstName())
+                .append("lastName", getLastName())
+                .append("password", getPassword())
+                .append("birthdate", getBirthdate())
+                .append("email", getEmail())
+                .append("address", getAddress())
+                .append("phoneNumber", getPhoneNumber())
+                .append("notificationPreference", getNotificationPreference())
+                .append("agentId", getAgentId());
+
+        // Note: You will also need to serialize the `reservation` and `paymentInfo` fields
+        // to store them in the database. Implement `toDocument()` methods for these
+        // classes and call them here.
+
+        return document;
+    }
+
 }
+
