@@ -17,7 +17,21 @@ public class Agent extends User {
     }
 
     // Getters and setters
-    // ...
+    public List<String> getCurrentClientIds(){
+        return currentClientIds;
+    }
+
+    public void setCurrentClientIds(List<String> currentClientIds){
+        this.currentClientIds = currentClientIds;
+    }
+
+    public List<String> getPastClientIds(){
+        return pastClientIds;
+    }
+
+    public void setPastClientIds(List<String> pastClientIds){
+        this.pastClientIds = pastClientIds;
+    }
 
 
     // Method to add a client to the current clients list

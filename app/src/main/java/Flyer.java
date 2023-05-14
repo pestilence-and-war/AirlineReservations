@@ -21,7 +21,6 @@ public class Flyer extends User {
     }
 
     // Getters and setters
-    // ...
 
     // Getter for agentId
     public String getAgentId() {
@@ -52,11 +51,10 @@ public class Flyer extends User {
                 .append("address", getAddress())
                 .append("phoneNumber", getPhoneNumber())
                 .append("notificationPreference", getNotificationPreference())
-                .append("agentId", getAgentId());
+                .append("agentId", getAgentId())
+                .append("paymentInfo", paymentInfo.toDocument())
+                .append("reservation", reservation.toDocument());
 
-        // Note: You will also need to serialize the `reservation` and `paymentInfo` fields
-        // to store them in the database. Implement `toDocument()` methods for these
-        // classes and call them here.
 
         return document;
     }
