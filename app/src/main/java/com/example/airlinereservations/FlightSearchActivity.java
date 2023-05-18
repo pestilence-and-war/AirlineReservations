@@ -1,26 +1,44 @@
 package com.example.airlinereservations;
-
 import androidx.appcompat.app.AppCompatActivity;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
-import org.bson.Document;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 
 public class FlightSearchActivity extends AppCompatActivity {
     private List<Flight> searchFlights(String origin, String destination, String departureDate) {
-        MongoDatabase db = DatabaseConnection.getDatabase();
-        MongoCollection<Document> flightsCollection = db.getCollection("flights");
-
         List<Flight> flights = new ArrayList<>();
-        flightsCollection.find(
-                Filters.and(
-                        Filters.eq("origin", origin),
-                        Filters.eq("destination", destination),
-                        Filters.eq("departureDate", departureDate)
-                )
-        ).forEach(document -> flights.add(Flight.fromDocument(document)));
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("Flight Information.txt"))))
+        {
+            String line;
+            while ((line = br.readLine()) != null) {
+                JSONObject flightObj = new JSONObject(line);
+                if (flightObj.getString("origin").equals(origin) && flightObj.getString("destination").equals(destination) && flightObj.getString("departureDate").equals(departureDate)) {
+                    Flight flight = new Flight();
+                    flight.setId(flightObj.getString("id"));
+                    flight.setOrigin(flightObj.getString("origin"));
+                    flight.setDestination(flightObj.getString("destination"));
+                    flight.setDepartureDate(flightObj.getString("departureDate"));
+                    flight.setDepartureTime(flightObj.getString("departureTime"));
+                    flight.setArrivalTime(flightObj.getString("arrivalTime"));
+                    flight.setAirline(flightObj.getString("airline"));
+                    // Check for NULL available seats
+                    String availableSeats = flightObj.getString("availableSeats");
+                    flight.setAvailableSeats("NULL".equals(availableSeats) ? -1 : Integer.parseInt(availableSeats));
+                    // Remove '$' from price
+                    String price = flightObj.getString("price");
+                    flight.setPrice(Double.parseDouble(price.replace("$", "")));
+                    flights.add(flight);
+                }
+            }
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
 
         return flights;
     }

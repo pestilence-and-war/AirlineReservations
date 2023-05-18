@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">AirlineReservations</string>
+
+    <string-array name="airports_array">
+        <item>JFK - John F. Kennedy International Airport</item>
+        <item>LAX - Los Angeles International Airport</item>
+        <item>ATL - Hartsfield-Jackson Atlanta International Airport</item>
+        <item>SFO - San Francisco International Airport</item>
+        <item>ATL - Hartsfield-Jackson Atlanta International Airport</item>
+        <item>ORD - Chicago O\'Hare International Airport</item>
+        <item>DFW - Dallas/Fort Worth International Airport</item>
+        <item>DEN - Denver International Airport</item>
+        <item>SFO - San Francisco International Airport</item>
+        <item>LAS - McCarran International Airport</item>
+        <item>SEA - Seattle-Tacoma International Airport</item>
+        <item>MIA - Miami International Airport</item>
+        <item>MCO - Orlando International Airport</item>
+        <item>CLT - Charlotte Douglas International Airport</item>
+        <item>PHX - Phoenix Sky Harbor International Airport</item>
+        <item>IAH - George Bush Intercontinental Airport</item>
+        <item>BOS - Logan International Airport</item>
+        <item>MSP - Minneapolis-St. Paul International Airport</item>
+        <item>DTW - Detroit Metropolitan Wayne County Airport</item>
+        <item>PHL - Philadelphia International Airport</item>
+        <item>LGA - LaGuardia Airport</item>
+        <!-- add more airports as needed -->
+    </string-array>
+
 </resources>
