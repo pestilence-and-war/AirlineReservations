@@ -1,3 +1,5 @@
+package com.example.airlinereservations;
+
 import org.bson.Document;
 
 public class PaymentInfo {
@@ -61,7 +63,7 @@ public class PaymentInfo {
         this.cardSecurityCode = cardSecurityCode;
     }
 
-    // Converts a PaymentInfo object to a Document for database storage
+    // Converts a com.example.airlinereservations.PaymentInfo object to a Document for database storage
     public Document toDocument() {
         Document document = new Document()
                 .append("paymentId", paymentId)
@@ -73,7 +75,7 @@ public class PaymentInfo {
         return document;
     }
 
-    // Creates a PaymentInfo object from a Document retrieved from the database
+    // Creates a com.example.airlinereservations.PaymentInfo object from a Document retrieved from the database
     public static PaymentInfo fromDocument(Document document) {
         PaymentInfo paymentInfo = new PaymentInfo();
         paymentInfo.setPaymentId(document.getString("paymentId"));
