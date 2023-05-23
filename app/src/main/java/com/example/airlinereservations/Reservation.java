@@ -1,6 +1,5 @@
 package com.example.airlinereservations;
-
-import org.bson.Document;
+import com.google.gson.Gson;
 
 public class Reservation {
     private String reservationId;
@@ -54,25 +53,15 @@ public class Reservation {
         this.numberOfPassengers = numberOfPassengers;
     }
 
-    // Converts a com.example.airlinereservations.Reservation object to a Document for database storage
-    public Document toDocument() {
-        Document document = new Document()
-                .append("reservationId", reservationId)
-                .append("flightId", flightId)
-                .append("userId", userId)
-                .append("numberOfPassengers", numberOfPassengers);
-
-        return document;
+    // Converts this Reservation object to a JSON string
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 
-    // Creates a com.example.airlinereservations.Reservation object from a Document retrieved from the database
-    public static Reservation fromDocument(Document document) {
-        Reservation reservation = new Reservation();
-        reservation.setReservationId(document.getString("reservationId"));
-        reservation.setFlightId(document.getString("flightId"));
-        reservation.setUserId(document.getString("userId"));
-        reservation.setNumberOfPassengers(document.getInteger("numberOfPassengers"));
-
-        return reservation;
+    // Creates a Reservation object from a JSON string
+    public static Reservation fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Reservation.class);
     }
 }

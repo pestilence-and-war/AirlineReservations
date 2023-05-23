@@ -1,6 +1,6 @@
 package com.example.airlinereservations;
 
-import org.bson.Document;
+import com.google.gson.Gson;
 
 public class PaymentInfo {
     private String paymentId;
@@ -63,27 +63,15 @@ public class PaymentInfo {
         this.cardSecurityCode = cardSecurityCode;
     }
 
-    // Converts a com.example.airlinereservations.PaymentInfo object to a Document for database storage
-    public Document toDocument() {
-        Document document = new Document()
-                .append("paymentId", paymentId)
-                .append("cardHolderName", cardHolderName)
-                .append("cardNumber", cardNumber)
-                .append("cardExpirationDate", cardExpirationDate)
-                .append("cardSecurityCode", cardSecurityCode);
-
-        return document;
+    // Converts this PaymentInfo object to a JSON string
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 
-    // Creates a com.example.airlinereservations.PaymentInfo object from a Document retrieved from the database
-    public static PaymentInfo fromDocument(Document document) {
-        PaymentInfo paymentInfo = new PaymentInfo();
-        paymentInfo.setPaymentId(document.getString("paymentId"));
-        paymentInfo.setCardHolderName(document.getString("cardHolderName"));
-        paymentInfo.setCardNumber(document.getString("cardNumber"));
-        paymentInfo.setCardExpirationDate(document.getString("cardExpirationDate"));
-        paymentInfo.setCardSecurityCode(document.getString("cardSecurityCode"));
-
-        return paymentInfo;
+    // Creates a PaymentInfo object from a JSON string
+    public static PaymentInfo fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, PaymentInfo.class);
     }
 }

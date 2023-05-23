@@ -1,7 +1,7 @@
 package com.example.airlinereservations;
 
 import java.util.Date;
-import org.bson.Document;
+import com.google.gson.Gson;
 
 public class Flyer extends User {
     private Reservation reservation;
@@ -42,24 +42,15 @@ public class Flyer extends User {
         this.notificationPreference = notificationPreference;
     }
 
-    public Document toDocument() {
-        Document document = new Document()
-                .append("userId", getUserId())
-                .append("firstName", getFirstName())
-                .append("lastName", getLastName())
-                .append("password", getPassword())
-                .append("birthdate", getBirthdate())
-                .append("email", getEmail())
-                .append("address", getAddress())
-                .append("phoneNumber", getPhoneNumber())
-                .append("notificationPreference", getNotificationPreference())
-                .append("agentId", getAgentId())
-                .append("paymentInfo", paymentInfo.toDocument())
-                .append("reservation", reservation.toDocument());
-
-
-        return document;
+    // Converts this Flyer object to a JSON string
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 
+    // Creates a Flyer object from a JSON string
+    public static Flyer fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Flyer.class);
+    }
 }
-

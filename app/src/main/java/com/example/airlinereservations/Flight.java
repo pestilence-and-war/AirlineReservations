@@ -1,6 +1,6 @@
 package com.example.airlinereservations;
 
-import org.bson.Document;
+import com.google.gson.Gson;
 
 public class Flight {
     private String id;
@@ -103,17 +103,17 @@ public class Flight {
         this.price = price;
     }
 
-    public static Flight fromDocument(Document document) {
-        Flight flight = new Flight();
-        flight.setId(document.getObjectId("_id").toString());
-        flight.setOrigin(document.getString("origin"));
-        flight.setDestination(document.getString("destination"));
-        flight.setDepartureDate(document.getString("departureDate"));
-        flight.setDepartureTime(document.getString("departureTime"));
-        flight.setArrivalTime(document.getString("arrivalTime"));
-        flight.setAirline(document.getString("airline"));
-        flight.setAvailableSeats(document.getInteger("availableSeats"));
-        flight.setPrice(document.getDouble("price"));
-        return flight;
+    // Converts this Flight object to a JSON string
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    // Creates a Flight object from a JSON string
+    public static Flight fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Flight.class);
     }
 }
+
+
