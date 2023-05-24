@@ -69,7 +69,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 String origin = spinnerOrigin.getSelectedItem().toString();
                 String destination = "";
-                String departureDate = "";
+                String departureDate = editTextDepartureDate.getText().toString();
                 List<Flight> flightSearchResult = FlightSearchActivity.searchFlights(view.getContext(), origin, destination, departureDate);
             }
         });
