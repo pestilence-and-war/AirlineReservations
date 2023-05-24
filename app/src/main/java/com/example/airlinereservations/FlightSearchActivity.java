@@ -1,4 +1,6 @@
 package com.example.airlinereservations;
+import android.content.Context;
+
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,10 +12,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class FlightSearchActivity extends AppCompatActivity {
-    private List<Flight> searchFlights(String origin, String destination, String departureDate) {
+    public static List<Flight> searchFlights(Context context,String origin, String destination, String departureDate) {
         List<Flight> flights = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("Flight Information.txt"))))
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(context.getAssets().open("Flight Information.txt"))))
         {
             String line;
             while ((line = br.readLine()) != null) {
