@@ -15,7 +15,6 @@ public class Flight {
 
     // Constructor
     public Flight(String id, String origin, String destination, String departureDate, String departureTime, String arrivalTime, String airline, int availableSeats, double price) {
-        this.id = id;
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
@@ -24,6 +23,9 @@ public class Flight {
         this.airline = airline;
         this.availableSeats = availableSeats;
         this.price = price;
+        this.id = airline.toUpperCase().substring(0,4)+origin.toUpperCase().substring(0,4)
+        +destination.toUpperCase().substring(0,4)+departureDate+departureTime;
+
     }
 
     // Default constructor
