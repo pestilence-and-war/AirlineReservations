@@ -1,8 +1,14 @@
 package com.example.airlinereservations;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import java.util.List;
 import com.google.gson.Gson;
 
-public class Flight {
+public class Flight implements Parcelable {
     private String id;
     private String origin;
     private String destination;
@@ -12,9 +18,13 @@ public class Flight {
     private String airline;
     private int availableSeats;
     private double price;
+    private List<String> availableSeatsList;
+    private List<String> takenSeatsList;
 
     // Constructor
-    public Flight(String id, String origin, String destination, String departureDate, String departureTime, String arrivalTime, String airline, int availableSeats, double price) {
+    public Flight(String id, String origin, String destination, String departureDate, String departureTime,
+                  String arrivalTime, String airline, int availableSeats, double price, List<String> availableSeatsList,
+                  List<String> takenSeatsList) {
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
@@ -22,15 +32,42 @@ public class Flight {
         this.arrivalTime = arrivalTime;
         this.airline = airline;
         this.availableSeats = availableSeats;
+        this.availableSeatsList = availableSeatsList;
+        this.takenSeatsList = takenSeatsList;
         this.price = price;
-        this.id = airline.toUpperCase().substring(0,4)+origin.toUpperCase().substring(0,4)
-        +destination.toUpperCase().substring(0,4)+departureDate+departureTime;
+        this.id = id;
 
     }
 
     // Default constructor
     public Flight() {
     }
+
+    protected Flight(Parcel in) {
+        id = in.readString();
+        origin = in.readString();
+        destination = in.readString();
+        departureDate = in.readString();
+        departureTime = in.readString();
+        arrivalTime = in.readString();
+        airline = in.readString();
+        availableSeats = in.readInt();
+        price = in.readDouble();
+        availableSeatsList = in.createStringArrayList();
+        takenSeatsList = in.createStringArrayList();
+    }
+
+    public static final Creator<Flight> CREATOR = new Creator<Flight>() {
+        @Override
+        public Flight createFromParcel(Parcel in) {
+            return new Flight(in);
+        }
+
+        @Override
+        public Flight[] newArray(int size) {
+            return new Flight[size];
+        }
+    };
 
     // Getters and setters
     public String getId() {
@@ -105,6 +142,22 @@ public class Flight {
         this.price = price;
     }
 
+    public List<String> getAvailableSeatsList(){
+        return availableSeatsList;
+    }
+
+    public void setAvailableSeatsList(List<String> availableSeatsList) {
+        this.availableSeatsList = availableSeatsList;
+    }
+
+    public List<String> getTakenSeatsList() {
+        return takenSeatsList;
+    }
+
+    public void setTakenSeatsList(List<String> takenSeatsList) {
+        this.takenSeatsList = takenSeatsList;
+    }
+
     // Converts this Flight object to a JSON string
     public String toJson() {
         Gson gson = new Gson();
@@ -116,6 +169,40 @@ public class Flight {
         Gson gson = new Gson();
         return gson.fromJson(json, Flight.class);
     }
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id='" + id + '\'' +
+                ", origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", departureDate='" + departureDate + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", arrivalTime='" + arrivalTime + '\'' +
+                ", airline='" + airline + '\'' +
+                ", availableSeats=" + availableSeats +
+                ", price=" + price +
+                ", availableSeatsList=" + availableSeatsList +
+                ", takenSeatsList=" + takenSeatsList +
+                '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(origin);
+        parcel.writeString(destination);
+        parcel.writeString(departureDate);
+        parcel.writeString(departureTime);
+        parcel.writeString(arrivalTime);
+        parcel.writeString(airline);
+        parcel.writeInt(availableSeats);
+        parcel.writeDouble(price);
+        parcel.writeStringList(availableSeatsList);
+        parcel.writeStringList(takenSeatsList);
+    }
 }
-
-

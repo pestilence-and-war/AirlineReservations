@@ -1,18 +1,30 @@
 package com.example.airlinereservations;
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 
-public class FlightSearchActivity extends AppCompatActivity {
-    public static List<Flight> searchFlights(Context context,String origin, String destination, String departureDate) {
+public class SearchActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+
+        SearchFragment searchFragment = SearchFragment.newInstance();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, searchFragment)
+                .commit();
+    }
+    public static List<Flight> searchFlights(Context context, String origin, String destination, String departureDate) {
         List<Flight> flights = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(context.getAssets().open("Flight Information.txt"))))
@@ -41,6 +53,7 @@ public class FlightSearchActivity extends AppCompatActivity {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+        new WriteTest().testReadFile(context);
 
         return flights;
     }

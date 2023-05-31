@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -16,9 +19,13 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class SearchFragment extends Fragment {
 
     private SearchViewModel mViewModel;
+    private SearchResultsFragment searchResultsFragment;
 
 
     public static SearchFragment newInstance() {
@@ -43,6 +50,9 @@ public class SearchFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOrigin.setAdapter(adapter);
 
+        final Spinner spinnerDestination = view.findViewById(R.id.spinnerDestination);
+        spinnerDestination.setAdapter(adapter);
+
         final EditText editTextDepartureDate = view.findViewById(R.id.editTextDepartureDate);
 
         editTextDepartureDate.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +74,28 @@ public class SearchFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
-        view.findViewById(R.id.buttonSearch).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.buttonSearchFlights).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String origin = spinnerOrigin.getSelectedItem().toString();
-                String destination = "";
+                String destination = spinnerDestination.getSelectedItem().toString();
                 String departureDate = editTextDepartureDate.getText().toString();
-                List<Flight> flightSearchResult = FlightSearchActivity.searchFlights(view.getContext(), origin, destination, departureDate);
+                List<Flight> flightSearchResult = SearchActivity.searchFlights(view.getContext(), origin, destination, departureDate);
+
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<Flight>>() {}.getType();
+                String flightSearchResultJson = gson.toJson(flightSearchResult, type);
+
+                // Create the SearchResultsFragment and pass the flight search results
+                searchResultsFragment = SearchResultsFragment.newInstance(flightSearchResultJson);
+                Bundle args = new Bundle();
+                args.putParcelableArrayList("searchResults", new ArrayList<>(flightSearchResult));
+                searchResultsFragment.setArguments(args);
+
+                // Display the SearchResultsFragment
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, searchResultsFragment)
+                        .commit();
             }
         });
 
