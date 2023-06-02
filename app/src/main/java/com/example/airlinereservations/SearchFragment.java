@@ -89,7 +89,7 @@ public class SearchFragment extends Fragment {
                 // Create the SearchResultsFragment and pass the flight search results
                 searchResultsFragment = SearchResultsFragment.newInstance(flightSearchResultJson);
                 Bundle args = new Bundle();
-                args.putParcelableArrayList("searchResults", new ArrayList<>(flightSearchResult));
+                args.putParcelableArrayList("flightSearchResults", new ArrayList<>(flightSearchResult));
                 searchResultsFragment.setArguments(args);
 
                 // Display the SearchResultsFragment

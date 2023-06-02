@@ -21,7 +21,7 @@ public class SearchResultsFragment extends Fragment {
     private RecyclerView recyclerViewSearchResults;
     private FlightsAdapter flightsAdapter;
 
-    private static final String ARG_FLIGHT_SEARCH_RESULT = "searchResult";
+    private static final String ARG_FLIGHT_SEARCH_RESULT = "flightSearchResult";
 
     public SearchResultsFragment() {
         // Required empty public constructor
@@ -38,6 +38,7 @@ public class SearchResultsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        flightSearchResult = FlightDataLoader.loadFlights(getContext());
         if (getArguments() != null) {
             Gson gson = new Gson();
             Type type = new TypeToken<List<Flight>>() {}.getType();

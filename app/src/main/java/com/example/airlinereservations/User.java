@@ -1,7 +1,6 @@
 package com.example.airlinereservations;
 
 import java.util.Date;
-import java.util.List;
 
 public abstract class User {
     private String userId;

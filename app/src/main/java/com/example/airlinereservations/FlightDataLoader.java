@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FlightDataLoader {
 
-    public List<Flight> loadFlights(Context context) {
+    public static List<Flight> loadFlights(Context context) {
         String jsonString = loadJSONFromAsset(context);
         if (jsonString != null) {
             Gson gson = new Gson();
@@ -20,7 +20,7 @@ public class FlightDataLoader {
         return null;
     }
 
-    private String loadJSONFromAsset(Context context) {
+    private static String loadJSONFromAsset(Context context) {
         String json = null;
         try {
             InputStream is = context.getAssets().open("Flight Information.txt");
