@@ -9,28 +9,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultsFragment extends Fragment {
 
     private List<Flight> flightSearchResult;
-    private RecyclerView recyclerViewSearchResults;
-    private FlightsAdapter flightsAdapter;
 
-    private static final String ARG_FLIGHT_SEARCH_RESULT = "flightSearchResult";
+    private static final String ARG_FLIGHT_SEARCH_RESULT = "flightSearchResults";
 
     public SearchResultsFragment() {
         // Required empty public constructor
     }
 
-    public static SearchResultsFragment newInstance(String flightSearchResultJson) {
+    public static SearchResultsFragment newInstance(ArrayList<Flight> flightSearchResults) {
         SearchResultsFragment fragment = new SearchResultsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_FLIGHT_SEARCH_RESULT, flightSearchResultJson);
+        args.putParcelableArrayList(ARG_FLIGHT_SEARCH_RESULT, flightSearchResults);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,28 +33,29 @@ public class SearchResultsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        flightSearchResult = FlightDataLoader.loadFlights(getContext());
         if (getArguments() != null) {
-            Gson gson = new Gson();
-            Type type = new TypeToken<List<Flight>>() {}.getType();
-            String flightSearchResultJson = getArguments().getString(ARG_FLIGHT_SEARCH_RESULT);
-            flightSearchResult = gson.fromJson(flightSearchResultJson, type);
+            flightSearchResult = getArguments().getParcelableArrayList(ARG_FLIGHT_SEARCH_RESULT);
+            System.out.println(flightSearchResult.size());
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_results, container, false);
 
         //initialize the RecyclerView
-        recyclerViewSearchResults = view.findViewById(R.id.recyclerViewSearchResults);
+        RecyclerView recyclerViewSearchResults = view.findViewById(R.id.recyclerViewSearchResults);
         recyclerViewSearchResults.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //Initialize the adapter and set it to the RecyclerView
-        flightsAdapter = new FlightsAdapter(flightSearchResult);
+        FlightsAdapter flightsAdapter = new FlightsAdapter(flightSearchResult);
         recyclerViewSearchResults.setAdapter(flightsAdapter);
+
+        if (flightSearchResult != null) {
+            System.out.println("Search result size: " + flightSearchResult.size()); // Debugging line
+        }
+
         return view;
     }
 }

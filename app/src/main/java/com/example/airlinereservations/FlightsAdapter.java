@@ -25,6 +25,7 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightVi
 
     @Override
     public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
+        System.out.println("Binding data to view holder: " + position);// Debugging line
         Flight flight = flightsList.get(position);
         holder.textViewFlightId.setText("Flight ID: " + flight.getId());
         holder.textViewDepartureDate.setText("Departure Date: " + flight.getDepartureDate().toString());

@@ -66,6 +66,7 @@ public class Flight implements Parcelable {
         @Override
         public Flight[] newArray(int size) {
             return new Flight[size];
+
         }
     };
 
@@ -147,16 +148,14 @@ public class Flight implements Parcelable {
     }
 
     public void setAvailableSeatsList(List<String> availableSeatsList) {
-        this.availableSeatsList = availableSeatsList;
-    }
+        this.availableSeatsList = availableSeatsList;}
 
     public List<String> getTakenSeatsList() {
         return takenSeatsList;
     }
 
     public void setTakenSeatsList(List<String> takenSeatsList) {
-        this.takenSeatsList = takenSeatsList;
-    }
+        this.takenSeatsList = takenSeatsList;}
 
     // Converts this Flight object to a JSON string
     public String toJson() {

@@ -17,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 import java.util.Calendar;
+import java.util.Locale;
+
 import android.widget.EditText;
 
 import com.google.gson.Gson;
@@ -66,7 +68,9 @@ public class SearchFragment extends Fragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
+                        String selectedDate = year + "-" + String.format(Locale.getDefault(), "%02d", (month + 1)) + "-" + String.format(Locale.getDefault(), "%02d", dayOfMonth);
+
+
                         editTextDepartureDate.setText(selectedDate);
                     }
                 }, year, month, day);
@@ -78,19 +82,16 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String origin = spinnerOrigin.getSelectedItem().toString();
+                System.out.println("the origin is: "+ origin);
                 String destination = spinnerDestination.getSelectedItem().toString();
+                System.out.println("the destination is: "+ destination);
                 String departureDate = editTextDepartureDate.getText().toString();
+                System.out.println("the date is: "+departureDate);
                 List<Flight> flightSearchResult = SearchActivity.searchFlights(view.getContext(), origin, destination, departureDate);
-
-                Gson gson = new Gson();
-                Type type = new TypeToken<List<Flight>>() {}.getType();
-                String flightSearchResultJson = gson.toJson(flightSearchResult, type);
+                System.out.println("the matching Flight is: "+flightSearchResult.listIterator().toString());
 
                 // Create the SearchResultsFragment and pass the flight search results
-                searchResultsFragment = SearchResultsFragment.newInstance(flightSearchResultJson);
-                Bundle args = new Bundle();
-                args.putParcelableArrayList("flightSearchResults", new ArrayList<>(flightSearchResult));
-                searchResultsFragment.setArguments(args);
+                searchResultsFragment = SearchResultsFragment.newInstance(new ArrayList<>(flightSearchResult));
 
                 // Display the SearchResultsFragment
                 getParentFragmentManager().beginTransaction()
@@ -99,7 +100,8 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        }
+
+    }
 
 
 }
