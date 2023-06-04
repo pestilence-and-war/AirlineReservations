@@ -82,13 +82,13 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String origin = spinnerOrigin.getSelectedItem().toString();
-                System.out.println("the origin is: "+ origin);
+                //System.out.println("the origin is: "+ origin);
                 String destination = spinnerDestination.getSelectedItem().toString();
-                System.out.println("the destination is: "+ destination);
+                //System.out.println("the destination is: "+ destination);
                 String departureDate = editTextDepartureDate.getText().toString();
-                System.out.println("the date is: "+departureDate);
-                List<Flight> flightSearchResult = SearchActivity.searchFlights(view.getContext(), origin, destination, departureDate);
-                System.out.println("the matching Flight is: "+flightSearchResult.listIterator().toString());
+                //System.out.println("the date is: "+departureDate);
+                List<Flight> flightSearchResult = SearchActivity.searchFlights(view.getContext(), origin, destination);
+                //System.out.println("the matching Flight is: "+flightSearchResult.listIterator().toString());
 
                 // Create the SearchResultsFragment and pass the flight search results
                 searchResultsFragment = SearchResultsFragment.newInstance(new ArrayList<>(flightSearchResult));

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/contentMain">
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.airlinereservations.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agentFragment"
+        android:name="com.example.airlinereservations.AgentFragment"
+        android:label="Agent"
+        tools:layout="@layout/fragment_agent">
+        <action
+            android:id="@+id/action_agentFragment_to_employeeFragment"
+            app:destination="@id/employeeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contentMain"
+        android:name="com.example.airlinereservations.ContentMain"
+        android:label="Main Menu">
+        <action
+            android:id="@+id/action_contentMain_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_contentMain_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/flyerFragment"
+        android:name="com.example.airlinereservations.FlyerFragment"
+        android:label="Flyer"
+        tools:layout="@layout/fragment_flyer" />
+    <fragment
+        android:id="@+id/paymentInfoFragment"
+        android:name="com.example.airlinereservations.PaymentInfoFragment"
+        android:label="fragment_payment_info"
+        tools:layout="@layout/fragment_payment_info" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.airlinereservations.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/reservationFragment"
+        android:name="com.example.airlinereservations.ReservationFragment"
+        android:label="Reservation"
+        tools:layout="@layout/fragment_reservation" />
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.example.airlinereservations.SearchResultsFragment"
+        android:label="Search Results"
+        tools:layout="@layout/fragment_search_results">
+        <action
+            android:id="@+id/action_searchResultsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.airlinereservations.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_agentFragment"
+            app:destination="@id/agentFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_adminOverrideFragment"
+            app:destination="@id/adminOverrideFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminOverrideFragment"
+        android:name="com.example.airlinereservations.AdminOverrideFragment"
+        android:label="Admin Override"
+        tools:layout="@layout/fragment_admin_override">
+        <action
+            android:id="@+id/action_adminOverrideFragment_to_adminOptionsFragment"
+            app:destination="@id/adminOptionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeFragment"
+        android:name="com.example.airlinereservations.EmployeeFragment"
+        android:label="Employee"
+        tools:layout="@layout/fragment_employee" />
+    <fragment
+        android:id="@+id/adminOptionsFragment"
+        android:name="com.example.airlinereservations.AdminOptionsFragment"
+        android:label="Admin Options"
+        tools:layout="@layout/fragment_admin_options">
+        <action
+            android:id="@+id/action_adminOptionsFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_adminOptionsFragment_to_flyerFragment"
+            app:destination="@id/flyerFragment" />
+        <action
+            android:id="@+id/action_adminOptionsFragment_to_reservationFragment"
+            app:destination="@id/reservationFragment" />
+        <action
+            android:id="@+id/action_adminOptionsFragment_to_agentFragment"
+            app:destination="@id/agentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.airlinereservations.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
+</navigation>

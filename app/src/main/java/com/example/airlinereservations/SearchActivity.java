@@ -26,7 +26,7 @@ public class SearchActivity extends AppCompatActivity {
                 .add(R.id.fragment_container, searchFragment)
                 .commit();
     }
-    public static List<Flight> searchFlights(Context context, String origin, String destination, String departureDate) {
+    public static List<Flight> searchFlights(Context context, String origin, String destination) {
         List<Flight> flights = new ArrayList<>();
         StringBuilder jsonContent = new StringBuilder();
 
@@ -42,7 +42,8 @@ public class SearchActivity extends AppCompatActivity {
                 JSONObject flightObj = flightArr.getJSONObject(i);
                 if (flightObj.getString("origin").equals(origin)
                         && flightObj.getString("destination").equals(destination)
-                        && flightObj.getString("departureDate").equals(departureDate)) {
+                        //&& flightObj.getString("departureDate").equals(departureDate))
+                ){
                     Flight flight = new Flight();
 
                     flight.setId(flightObj.getString("id"));

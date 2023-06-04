@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8F8787"
+    tools:context=".AdminOverrideFragment">
+
+    <TextView
+        android:id="@+id/t_override"
+        android:layout_width="352dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="100dp"
+        android:text="Currently Used to bypass log in while in development"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/b_1"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_1"
+        android:textColor="#0B0B0B"
+        app:layout_constraintEnd_toStartOf="@+id/b_2"
+        app:layout_constraintTop_toBottomOf="@+id/t_override" />
+
+    <Button
+        android:id="@+id/b_2"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_2"
+        android:textColor="#0B0B0B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/t_override" />
+
+    <Button
+        android:id="@+id/b_3"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_3"
+        android:textColor="#0B0B0B"
+        app:layout_constraintStart_toEndOf="@+id/b_2"
+        app:layout_constraintTop_toBottomOf="@+id/t_override" />
+
+    <Button
+        android:id="@+id/b_4"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_4"
+        android:textColor="#0B0B0B"
+        app:layout_constraintBottom_toTopOf="@+id/b_7"
+        app:layout_constraintEnd_toStartOf="@+id/b_5"
+        app:layout_constraintTop_toBottomOf="@+id/b_1" />
+
+    <Button
+        android:id="@+id/b_5"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_5"
+        android:textColor="#0B0B0B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_2" />
+
+    <Button
+        android:id="@+id/b_6"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_6"
+        android:textColor="#0B0B0B"
+        app:layout_constraintStart_toEndOf="@+id/b_5"
+        app:layout_constraintTop_toBottomOf="@+id/b_3" />
+
+    <Button
+        android:id="@+id/b_7"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_7"
+        android:textColor="#0B0B0B"
+        app:layout_constraintEnd_toStartOf="@+id/b_8"
+        app:layout_constraintTop_toBottomOf="@+id/b_4" />
+
+    <Button
+        android:id="@+id/b_8"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_8"
+        android:textColor="#0B0B0B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_5" />
+
+    <Button
+        android:id="@+id/b_9"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_9"
+        android:textColor="#0B0B0B"
+        app:layout_constraintStart_toEndOf="@+id/b_8"
+        app:layout_constraintTop_toBottomOf="@+id/b_6" />
+
+    <Button
+        android:id="@+id/b_0"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/b_0"
+        android:textColor="#0B0B0B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_7" />
+
+    <Button
+        android:id="@+id/b_del"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="90dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/backspace"
+        android:textColor="#0B0B0B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_8" />
+
+    <Button
+        android:id="@+id/b_ent_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#BD2121"
+        android:text="@string/enter"
+        android:textColor="#0B0B0B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_del" />
+</androidx.constraintlayout.widget.ConstraintLayout>
