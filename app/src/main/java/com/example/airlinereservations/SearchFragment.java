@@ -78,7 +78,7 @@ public class SearchFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
-        view.findViewById(R.id.buttonSearchFlights).setOnClickListener(new View.OnClickListener() {
+        getActivity().findViewById(R.id.buttonSearchFlights).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String origin = spinnerOrigin.getSelectedItem().toString();
@@ -87,16 +87,15 @@ public class SearchFragment extends Fragment {
                 //System.out.println("the destination is: "+ destination);
                 String departureDate = editTextDepartureDate.getText().toString();
                 //System.out.println("the date is: "+departureDate);
-                List<Flight> flightSearchResult = SearchActivity.searchFlights(view.getContext(), origin, destination);
+                List<Flight> flightSearchResult = FlightUtils.searchFlights(view.getContext(), origin, destination);
                 //System.out.println("the matching Flight is: "+flightSearchResult.listIterator().toString());
 
                 // Create the SearchResultsFragment and pass the flight search results
                 searchResultsFragment = SearchResultsFragment.newInstance(new ArrayList<>(flightSearchResult));
 
-                // Display the SearchResultsFragment
-                getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, searchResultsFragment)
-                        .commit();
+                // Replace the current fragment with the SearchResultsFragment
+                ((MainActivity)getActivity()).replaceFragment(searchResultsFragment);
+
             }
         });
 

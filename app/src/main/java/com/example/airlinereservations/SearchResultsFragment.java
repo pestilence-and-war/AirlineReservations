@@ -52,9 +52,9 @@ public class SearchResultsFragment extends Fragment {
         FlightsAdapter flightsAdapter = new FlightsAdapter(flightSearchResult);
         recyclerViewSearchResults.setAdapter(flightsAdapter);
 
-        if (flightSearchResult != null) {
-            System.out.println("Search result size: " + flightSearchResult.size()); // Debugging line
-        }
+//        if (flightSearchResult != null) {
+//            System.out.println("Search result size: " + flightSearchResult.size()); // Debugging line
+//        }
 
         return view;
     }
