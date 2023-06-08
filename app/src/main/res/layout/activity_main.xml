@@ -26,7 +26,7 @@
         android:id="@+id/nav_host_fragment_content_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="665dp"
+        android:layout_height="597dp"
         android:layout_gravity="bottom"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,6 +35,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph"
         tools:layout="@layout/fragment_content" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:text="P&amp;W Airlines"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_anchor="@+id/nav_host_fragment_content_main"
+        app:layout_anchorGravity="top|center"
+        tools:visibility="visible" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

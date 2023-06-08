@@ -9,56 +9,61 @@
 
     <Button
         android:id="@+id/b_search"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="#095293"
         android:text="@string/searchFlights"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/b_myflights"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/b_agent"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="#095293"
         android:text="@string/agent"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/b_view_cart2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/b_view_cart2"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="125dp"
         android:backgroundTint="#095293"
         android:text="@string/viewCart"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/b_login"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="#095293"
         android:text="@string/login"
         android:textAlignment="center"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/b_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/b_myflights"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="#095293"
         android:text="@string/myFlights"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/b_agent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
