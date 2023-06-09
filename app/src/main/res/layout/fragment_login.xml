@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8F8787"
+    android:background="#C8BEBE"
     tools:context=".LoginFragment">
 
     <Button

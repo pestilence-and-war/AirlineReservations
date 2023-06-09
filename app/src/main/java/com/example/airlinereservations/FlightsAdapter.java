@@ -1,5 +1,6 @@
 package com.example.airlinereservations;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,16 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightVi
     @Override
     public void onBindViewHolder(@NonNull FlightViewHolder holder, int position) {
         System.out.println("Binding data to view holder: " + position);// Debugging line
-        Flight flight = flightsList.get(position);
-        holder.textViewFlightId.setText("Flight ID: " + flight.getId());
-        holder.textViewDepartureDate.setText("Departure Date: " + flight.getDepartureDate().toString());
-        holder.textViewPrice.setText("Price: " + flight.getPrice());
+        if (flightsList == null || flightsList.size() == 0)  {
+            holder.textViewFlightId.setText("No flights found");
+            holder.textViewDepartureDate.setText("");
+            holder.textViewPrice.setText("");
+        } else {
+            Flight flight = flightsList.get(position);
+            holder.textViewFlightId.setText("Flight ID: " + flight.getId());
+            holder.textViewDepartureDate.setText("Departure Date: " + flight.getDepartureDate().toString());
+            holder.textViewPrice.setText("Price: $" + flight.getPrice());
+        }
         // Bind flight data to views here
         // For example: holder.airlineTextView.setText(flight.getAirline());
     }
@@ -37,10 +44,10 @@ public class FlightsAdapter extends RecyclerView.Adapter<FlightsAdapter.FlightVi
 
     @Override
     public int getItemCount() {
-        if (flightsList != null) {
+        if (flightsList != null && flightsList.size() > 0) {
             return flightsList.size();
         } else {
-            return 0;
+            return 1;
         }
     }
 
